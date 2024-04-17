@@ -16,7 +16,7 @@ module.exports.handler = async (event, context) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: `User created successfully`,
+                message: `Users`,
                 data: users // Return the newly created user data
             })
         };

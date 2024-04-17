@@ -26,7 +26,17 @@ provider:
   stage: ${opt:stage, 'dev'}
   memorySize: 128
   logRetentionInDays: 1
-  region: ap-south-1
+  environment:
+    REGION: ap-south-1
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  # httpApi:
+  #   authorizer:
+  #     tokenAuth:
+  #       type: request
+  #       identitySource:
+  #         - $request.headers.Authorization
+  #       functionName: tokenAuthorizer
+
 
 
 # you can overwrite defaults here
@@ -64,18 +74,28 @@ provider:
 #    - include-me-dir/**
 
 functions:
+  tokenAuthorizer:
+    handler: src/authorization/tokenAuthorizer.handler
   getUsers:
     handler: src/handlers/getUsers.handler
     events:
      - httpApi:
          path: /users
          method: get
+         authorizer:
+            name: tokenAuthorizer
+            identitySource: $request.header.Authorization
+            type: request
   createUsers:
     handler: src/handlers/createUser.handler
     events:
     - httpApi:
         path: /users/create
         method: POST
+        authorizer:
+            name: tokenAuthorizer
+            identitySource: $request.header.Authorization
+            type: request
     timeout: 30
   updateUsers:
     handler: src/handlers/updateUser.handler
@@ -83,6 +103,10 @@ functions:
     - httpApi:
         path: /users/update/{id}
         method: PUT
+        authorizer:
+            name: tokenAuthorizer
+            identitySource: $request.header.Authorization
+            type: request
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
