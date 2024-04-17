@@ -26,6 +26,7 @@ provider:
   stage: ${opt:stage, 'dev'}
   memorySize: 128
   logRetentionInDays: 1
+  region: ap-south-1
 
 
 # you can overwrite defaults here
