@@ -11,7 +11,16 @@ endpoints:
 GET - https://f13sa5plc7.execute-api.ap-south-1.amazonaws.com/users
 POST - https://f13sa5plc7.execute-api.ap-south-1.amazonaws.com/users/create
 PUT - https://f13sa5plc7.execute-api.ap-south-1.amazonaws.com/users/update/{id}
+
 functions:
 getUsers: aws-serverless-apigateway-lambda-dev-getUsers (41 MB)
 createUsers: aws-serverless-apigateway-lambda-dev-createUsers (41 MB)
 updateUsers: aws-serverless-apigateway-lambda-dev-updateUsers (41 MB)
+
+command for Bucket creation
+npm i -g aws-sdk
+npm i dotenv
+node src\aws-sdk\createS3Bucket.js
+
+bucket URL:
+http://bk-aws-sdk-lambda-serverless.s3.ap-south-1.amazonaws.com/
