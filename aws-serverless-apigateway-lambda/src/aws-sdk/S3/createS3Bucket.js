@@ -1,6 +1,7 @@
 require('dotenv').config(); // Load environment variables from .env file
 
 const AWS = require('aws-sdk');
+const generatePreSignedURLs = require('./preSignedURL');
 
 // Configure AWS SDK with credentials and region
 AWS.config.update({
@@ -28,5 +29,13 @@ s3.createBucket(params, (err, data) => {
         console.error('Error creating bucket:', err);
     } else {
         console.log('Bucket created successfully:', data.Location);
+        //generate pre-signed URLs
+        // generatePreSignedURLs(process.env.FILE_KEY_IN_S3).then(({ getSignedUrlForGet, getSignedUrlForPut }) => {
+        //     // Use the generated pre-signed URLs as needed
+        //     console.log('Pre-signed URL for GET:', getSignedUrlForGet);
+        //     console.log('Pre-signed URL for PUT:', getSignedUrlForPut);
+        // }).catch(error => {
+        //     console.error('Error generating pre-signed URLs:', error);
+        // });
     }
 });

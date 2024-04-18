@@ -20,7 +20,16 @@ updateUsers: aws-serverless-apigateway-lambda-dev-updateUsers (41 MB)
 command for Bucket creation
 npm i -g aws-sdk
 npm i dotenv
-node src\aws-sdk\createS3Bucket.js
+node src\aws-sdk\S3\createS3Bucket.js
 
-bucket URL:
-http://bk-aws-sdk-lambda-serverless.s3.ap-south-1.amazonaws.com/
+private-bucket URL:
+http://s3-bk-aws-sdk-lambda-serverless.s3.amazonaws.com/
+
+public-bucket URL:
+http://s3-bk-aws-sdk-nodejs-public.s3.amazonaws.com/
+
+genearate preSignedURL
+npm install @aws-sdk/client-s3
+npm install @aws-sdk/s3-request-presigner
+
+node .\src\aws-sdk\S3\preSignedURL.js
