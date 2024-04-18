@@ -1,12 +1,6 @@
 require('dotenv').config(); // Load environment variables from .env file
 
 const AWS = require('aws-sdk');
-console.log(process.env.AWS_ACCESS_KEY_ID)
-console.log(process.env.AWS_SECRET_ACCESS_KEY)
-console.log(process.env.AWS_REGION)
-console.log(process.env.BUCKET_NAME)
-
-
 
 // Configure AWS SDK with credentials and region
 AWS.config.update({
@@ -23,9 +17,9 @@ const params = {
     Bucket: process.env.BUCKET_NAME ,
     ACL: 'private' , // Specify the bucket's access control list (ACL)
     CreateBucketConfiguration: {
-        LocationConstraint: process.env.AWS_REGION // Specify the region where the bucket should be created
+        LocationConstraint: process.env.AWS_REGION // the region where the bucket should be created
     }
-    // Add other parameters as needed
+
 };
 
 // Call the createBucket method to create the bucket
