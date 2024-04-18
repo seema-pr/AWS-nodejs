@@ -36,7 +36,7 @@ async function generatePreSignedURLForPut(key, contentType) {
 
     const putObjectParams = {
         Bucket: process.env.BUCKET_NAME,
-        Key: key,
+        Key: `uploads/user-uploads/${key}`,
         ContentType: contentType,
     };
 
